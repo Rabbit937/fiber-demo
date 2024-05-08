@@ -13,4 +13,25 @@
             answer.style.display = answer.style.display === 'none' ? 'block' : 'none';
         });
     }
+
+    const editForm = document.querySelector("#form-update-fact")
+    const factToEdit = editForm && editForm.dataset.factid
+
+    console.log(editForm)
+    console.log(factToEdit)
+
+    editForm && editForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+
+        const formData = Object.fromEntries(new FormData(editForm));
+        console.log(formData)
+
+        return fetch(`/fact/${factToEdit}`, {
+            method: 'PATCH',
+            headers: {
+                'Conent-Type': 'application/json'
+            },
+            body: JSON.stringify(formData)
+        }).then(() => document.location.href = `/fact/${factToEdit}`)
+    })
 })()
