@@ -16,4 +16,8 @@ func setupRoutes(app *fiber.App) {
 	app.Get("/fact/:id/edit", handlers.EditFact)
 
 	app.Patch("/fact/:id", handlers.UpdateFact)
+
+	// Delete fact
+	app.Delete("/fact/:id",handlers.DeleteFact)
+
 }
